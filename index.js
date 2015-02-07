@@ -46,9 +46,8 @@ app.get('/patterns/:name', function(req, res) {
     res.sendFile(path.join(__dirname + '/patterns/' + req.params.name));
 });
 
-var server = app.listen(8000, function () {
-    var host = server.address().address;
-    var port = server.address().port;
+app.set('port', (process.env.PORT || 5000));
 
-    console.log('Patternize listening at http://%s:%s', host, port);
+app.listen(app.get('port'), function() {
+  console.log("Node app is running at localhost:" + app.get('port'));
 });
